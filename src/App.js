@@ -1,46 +1,19 @@
-import { useState, useEffect, useMemo } from "react";
 import './App.css';
 
 function App()
 {
-  //We use const - array destructuring - use State gives us back an array - readOnly number - a function that should change.
-  const [number, setNumber] = useState(0);
-  const [lotteryNumbers, setLotteryNumbers] = useState([]);
-
-  //Keeps track - optimization
-  const expensiveCalculationForLotteryGoldNumber = useMemo(() =>
-  {
-    //HUGE expensive calculation
-    return 50;
-  }, [lotteryNumbers]);
-
-  const addLotteryNumber = () =>
-  {
-    setLotteryNumbers([...lotteryNumbers, number]);
-  };
-
-  useEffect(() =>
-  {
-    console.log("The page mounted");
-  }, [lotteryNumbers])
-
-
   return (
     <div className="app">
-      <h1>Let's learn the fundamentals</h1>
+      <h1>Contact Me</h1>
+      <h2>Please fill out the following</h2>
 
-      <p>Counter</p>
-      <button onClick={() => setNumber(number + 1)}>+</button>
-      <p>{number}</p>
-      <button onClick={() => setNumber(number - 1)}>-</button>
-      <br />
-
-      <button onClick={addLotteryNumber}>Generate lottery number</button>
-      {lotteryNumbers.map((lotteryNumber, i) =>
-      (
-        <p key={i}>The lottery number #{i + 1} is {lotteryNumber}</p>
-      ))}
+      <input placeholder="First Name" type="text" /> <br />
+      <input placeholder="Last Name" type="text" /> <br />
+      <input placeholder="Email" type="text" /> <br />
+      <input placeholder="Password" type="text" /> <br />
+      <button>Submit</button>
     </div>
+
   );
 }
 
