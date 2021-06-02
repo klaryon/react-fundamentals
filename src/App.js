@@ -1,11 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import './App.css';
 
 function App()
 {
-  //we use const - array destructuring - use State gives us back an array - readOnly number - a function that should change.
+  //We use const - array destructuring - use State gives us back an array - readOnly number - a function that should change.
   const [number, setNumber] = useState(0);
   const [lotteryNumbers, setLotteryNumbers] = useState([]);
+
+  //Keeps track - optimization
+  const expensiveCalculationForLotteryGoldNumber = useMemo(() =>
+  {
+    //HUGE expensive calculation
+    return 50;
+  }, [lotteryNumbers]);
 
   const addLotteryNumber = () =>
   {
