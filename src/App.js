@@ -1,15 +1,15 @@
-import {useRef} from "react";
+import { useForm } from "react-hook-form";
 import './App.css';
 
 function App()
 {
-  const firstNameRef = useRef(null);
+  const { handleSubmit, register } = useForm();
 
-  const onSubmit = (e) =>
+  const onSubmit = (formData) =>
   {
-    e.preventDefault();
 
-    firstNameRef.current.value;
+    console.log(formData);
+
   }
 
   return (
@@ -17,12 +17,12 @@ function App()
       <h1>Sign up</h1>
       <h2>Please fill out the following:</h2>
 
-      <form>
-        <input ref={firstNameRef} placeholder="First Name" type="text" /><br />
-        <input ref={firstNameRef} placeholder="Last Name" type="text" /> <br />
-        <input placeholder="Email" type="email" /> <br />
-        <input placeholder="Password" type="password" /> <br />
-        <button onClick={onSubmit} type="submit">Submit</button>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <input {...register("firstName", {required: true})} placeholder="First Name" type="text" /><br />
+        <input {...register("lastName", {required: true})} placeholder="Last Name" type="text" /> <br />
+        <input {...register("email")} placeholder="Email" type="email" /> <br />
+        <input {...register("password")} placeholder="Password" type="password" /> <br />
+        <button type="submit">Submit</button>
       </form>
     </div>
 
@@ -30,3 +30,5 @@ function App()
 }
 
 export default App;
+
+//https://react-hook-form.com/
