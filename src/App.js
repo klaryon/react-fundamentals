@@ -1,28 +1,25 @@
-import {useState} from "react";
+import {useRef} from "react";
 import './App.css';
 
 function App()
 {
-  const [firstName, setFirstName] = useState("");
+  const firstNameRef = useRef(null);
 
   const onSubmit = (e) =>
   {
     e.preventDefault();
+
+    firstNameRef.current.value;
   }
 
   return (
     <div className="app">
-      <h1>Contact Me</h1>
-      <h2>Please fill out the following</h2>
+      <h1>Sign up</h1>
+      <h2>Please fill out the following:</h2>
 
       <form>
-        <input
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
-          placeholder="First Name"
-          type="text" />{" "}
-        <br />
-        <input placeholder="Last Name" type="text" /> <br />
+        <input ref={firstNameRef} placeholder="First Name" type="text" /><br />
+        <input ref={firstNameRef} placeholder="Last Name" type="text" /> <br />
         <input placeholder="Email" type="email" /> <br />
         <input placeholder="Password" type="password" /> <br />
         <button onClick={onSubmit} type="submit">Submit</button>
