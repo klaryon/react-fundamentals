@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import './App.css';
 
 function App()
@@ -10,7 +10,13 @@ function App()
   const addLotteryNumber = () =>
   {
     setLotteryNumbers([...lotteryNumbers, number]);
-  }
+  };
+
+  useEffect(() =>
+  {
+    console.log("The page mounted");
+  }, [lotteryNumbers])
+
 
   return (
     <div className="app">
@@ -25,7 +31,7 @@ function App()
       <button onClick={addLotteryNumber}>Generate lottery number</button>
       {lotteryNumbers.map((lotteryNumber, i) =>
       (
-        <p>The lottery number #{i + 1} is {lotteryNumber}</p>
+        <p key={i}>The lottery number #{i + 1} is {lotteryNumber}</p>
       ))}
     </div>
   );
